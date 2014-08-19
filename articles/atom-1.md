@@ -48,6 +48,6 @@ materials like carbon dioxide (CO~2~) or water (H~2~O).
 See Also
 --------
 
-- [Compounds](article.php?article_name=Compounds)\
+- [Quarks](quark-1)
  - [States of Matter](article.php?article_name=StatesofMatter)
 

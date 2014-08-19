@@ -70,5 +70,5 @@ See Also
 --------
 
 - [Proton](article.php?article_name=Proton)\
- - [Charge](article.php?article_name=Charge)
+ - [Atom](atom-1)
 

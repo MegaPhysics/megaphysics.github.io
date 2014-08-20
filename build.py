@@ -19,7 +19,9 @@ def run():
     raise Exception("This script must be run from the root MegaPhysics directory")
 
   # Empty the build dir
-  os.system("rm -r build")
+  if os.path.isdir("build"):
+    os.system("rm -r build")
+
   os.system("mkdir build")
 
   # We will make destructive modifications to the articles before passing them to pandoc,
@@ -45,7 +47,8 @@ def run():
       course = ARTICLES[name].get('course')
       if course == None:
         raise Exception(f+ " metadata has no 'course' entry")
-      os.system("mkdir build/"+course)
+      if not os.path.isdir("build/"+course):
+        os.system("mkdir build/"+course)
       os.system("pandoc -s -t html5 --template=template.html -o build/"+course+"/"+name+".html"+" temp/"+f)
   finally:
     # Clean up after ourselves

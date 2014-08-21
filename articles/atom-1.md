@@ -33,6 +33,8 @@ protons and electrons for this cancellation to happen.
 Types of Atom
 -------------
 
+![An unrelated abstract atom symbol](atom.svg)
+
 The different types of atoms are called elements. There are lots of
 common, everyday elements like Oxygen, Iron and Carbon, alongside rarer
 ones like Uranium. The element, i.e. the type of atom, is defined by the

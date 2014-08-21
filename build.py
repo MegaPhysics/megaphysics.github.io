@@ -8,8 +8,14 @@ import re
 
 import yaml
 
+# -------- Globals -------- #
+
+# This dictionary will store all metadata for the articles,
+# this is so we can dynamically generate valid links between articles.
+ARTICLES = {}
 
 # -------- Functions -------- #
+
 
 def files():
 
@@ -52,13 +58,10 @@ def run():
     # them to pandoc, so copy them to a temp location first.
     os.system("cp -r articles temp")
 
-    # This dictionary will store all metadata for the articles,
-    # this is so we can dynamically generate valid links between articles.
-    ARTICLES = {}
-
     # Get metadata for all the articles
     # TODO: check that all metadata is valid at this point
     # e.g. must have a 'course' field
+    global ARTICLES
     for f in files():
         name = re.match("(.+)\.", f).group(1)
         ARTICLES[name] = metadata(f)
@@ -81,6 +84,8 @@ def run():
             os.system("pandoc -s -t html5 --template=template.html -o build/"
                       + course + "/" + name + ".html" + " temp/" + f)
 
+        os.system("cp -r assets build/assets")
+
     finally:
         # Clean up after ourselves
         os.system("rm -r temp")
@@ -95,21 +100,30 @@ def generate_links(ARTICLES):
     for filename in os.listdir("temp"):
         text = open("temp/" + filename).read()
 
-        for match in re.finditer("\[.+?\]\((.+?)\)", text):
-            article_name = match.group(1)
-            data = ARTICLES.get(article_name)
-
-            if data is None:
-                continue
-
-            url = "/" + data["course"] + "/" + article_name + ".html"
-            text = re.sub(
-                "\]\(" + article_name + "\)",
-                "](" + url + ")",
-                text)
+        image = image_link(filename.replace(".md", ""))
+        text = re.sub("\!\[(.+?)\]\((.+?)\)", image, text)
+        text = re.sub("\[(.+?)\]\((.+?)\)", article_link, text)
 
         with open("temp/" + filename, "w") as f:
             f.write(text)
+
+
+def image_link(article_name):
+    def repl(match):
+        alt_text = match.group(1)
+        image_name = match.group(2)
+        return "!["+alt_text+"]"+"(/assets/article_assets/"+article_name+"/images/"+image_name+")"
+    return repl
+
+
+def article_link(match):
+    global ARTICLES
+    link_text = match.group(1)
+    article_name = match.group(2)
+    data = ARTICLES.get(article_name)
+    if data is None:
+        return "["+link_text+"]("+article_name+")"
+    return "["+link_text+"](/"+data["course"]+"/"+article_name+".html)"
 
 
 # -------- Run Code -------- #

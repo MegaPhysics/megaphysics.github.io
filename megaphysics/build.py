@@ -14,10 +14,6 @@ import yaml
 # this is so we can dynamically generate valid links between articles.
 ARTICLES = {}
 
-# -------- Projecy Libraries -------- #
-
-from megaphysics.database import add_wiki_article
-
 
 # -------- Functions -------- #
 
@@ -70,7 +66,6 @@ def run():
     for f in files():
         name = re.match("(.+)\.", f).group(1)
         ARTICLES[name] = metadata(f)
-        add_wiki_article(ARTICLES[name]['title'])
 
     try:
 
@@ -115,24 +110,25 @@ def generate_links(ARTICLES):
 
 
 def image_link(article_name):
+
     def repl(match):
         alt_text = match.group(1)
         image_name = match.group(2)
-        return "!["+alt_text+"]"+"(/assets/article_assets/"+article_name+"/images/"+image_name+")"
+        return "![" + alt_text + "]" + "(/assets/article_assets/" + \
+            article_name + "/images/" + image_name + ")"
+
     return repl
 
 
 def article_link(match):
+
     global ARTICLES
     link_text = match.group(1)
     article_name = match.group(2)
     data = ARTICLES.get(article_name)
+
     if data is None:
-        return "["+link_text+"]("+article_name+")"
-    return "["+link_text+"](/"+data["course"]+"/"+article_name+".html)"
+        return "[" + link_text + "](" + article_name + ")"
 
-
-# -------- Run Code -------- #
-
-if __name__ == "__main__":
-    run()
+    return "[" + link_text + "](/" + data["course"] + "/" + article_name + \
+        ".html)"

@@ -79,7 +79,7 @@ def run():
                 os.system("mkdir build/" + course)
 
             os.system("pandoc -s -t html5 --template=template.html -o build/"
-                + course + "/" + name + ".html" + " temp/" + f)
+                      + course + "/" + name + ".html" + " temp/" + f)
 
     finally:
         # Clean up after ourselves
@@ -114,4 +114,5 @@ def generate_links(ARTICLES):
 
 # -------- Run Code -------- #
 
-run()
+if __name__ == "__main__":
+    run()

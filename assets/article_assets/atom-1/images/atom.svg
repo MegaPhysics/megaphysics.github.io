@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg"
+xmlns:xlink="http://www.w3.org/1999/xlink" width="270" height="305">
+<ellipse id="e" cx="135" cy="153" rx="40" ry="144" fill="none" stroke="#000" stroke-width="5"/>
+<use xlink:href="#e" transform="rotate(60 135,153)"/>
+<use xlink:href="#e" transform="rotate(-60 135,153)"/>
+</svg>

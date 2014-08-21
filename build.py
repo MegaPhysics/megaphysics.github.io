@@ -9,6 +9,11 @@ import re
 import yaml
 
 
+# -------- Projecy Libraries -------- #
+
+from megaphysics.database import add_wiki_article
+
+
 # -------- Functions -------- #
 
 def files():
@@ -62,6 +67,7 @@ def run():
     for f in files():
         name = re.match("(.+)\.", f).group(1)
         ARTICLES[name] = metadata(f)
+        add_wiki_article(ARTICLES[name]['title'])
 
     try:
 

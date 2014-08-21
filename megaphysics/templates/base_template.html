@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+	{% block title %}
+		<title>MegaPhysics</title>
+	{% endblock title %}
+
+	<style type = "text/css">
+
+	body {
+		font-family: Verdana, sans-serif;
+		color: black;
+		background: white;
+		margin: 0;
+	}
+
+	#content {
+		width: 58em;
+		margin: 0 auto;
+		background: white;
+		height: 100%;
+	}
+
+	#navbar {
+		width: 58em;
+		margin: 0 auto;
+		background: white;
+		padding-top: 3em;
+		padding-bottom: 2em;
+	}
+
+	#navcontent {
+		/*width: 15em;*/
+		margin-left: auto;
+		margin-right: auto;
+		font-size: 2.5em;
+	}
+
+	a:link,
+	a:visited {
+		color: #3D3D3D;
+		text-decoration: none;
+	}
+
+	a:hover {
+		color: #FF7777;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		font-weight: normal;
+	}
+
+	</style>
+
+	{% block head %}{% endblock head %}
+
+</head>
+
+<body>
+
+	<div id = "navbar"><div id = "navcontent">
+
+		<a href = "">Home</a> <a href = "">Articles</a> <a href = "">Courses</a> <a href = "">About</a>
+
+	</div></div>
+
+	<div id = "content">
+		{% block content %}
+
+			Base template.
+
+		{% endblock content %}
+	</div>
+
+</body>
+</html>

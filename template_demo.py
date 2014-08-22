@@ -2,10 +2,10 @@
 
 # -------- Project Libraries -------- #
 
-from megaphysics.templating import generate_demo_templates
+from megaphysics.templating import generate_templates
 
 
 # -------- Run Code -------- #
 
 if __name__ == '__main__':
-	generate_demo_templates()
+	generate_templates()

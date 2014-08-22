@@ -2,17 +2,21 @@
 
 import os
 import re
+import subprocess
 
 
 # -------- Third Party Libraries -------- #
 
 import yaml
+from jinja2 import Environment, PackageLoader
 
 # -------- Globals -------- #
 
 # This dictionary will store all metadata for the articles,
 # this is so we can dynamically generate valid links between articles.
 ARTICLES = {}
+jinja = Environment(loader = PackageLoader('megaphysics', 'templates'))
+BUILD_DIR = os.getcwd()
 
 
 # -------- Functions -------- #
@@ -43,6 +47,8 @@ def metadata(filename):
 def run():
 
     """Runs the build."""
+
+    global jinja
 
     # Check if we're in the root dir.
     if re.search("MegaPhysics$", os.getcwd()) is None:
@@ -82,8 +88,11 @@ def run():
             if not os.path.isdir("build/" + course):
                 os.system("mkdir build/" + course)
 
-            os.system("pandoc -s -t html5 --template=template.html -o build/"
-                      + course + "/" + name + ".html" + " temp/" + f)
+            content = subprocess.check_output(["pandoc", "-t", "html5", "--template="+BUILD_DIR+"/template.html", BUILD_DIR+"/temp/"+f])
+
+            page = jinja.get_template("article.html")
+            with open('build/' + course + '/' + name + '.html', 'w') as f:
+                f.write(page.render(content=content))
 
         os.system("cp -r assets build/assets")
 

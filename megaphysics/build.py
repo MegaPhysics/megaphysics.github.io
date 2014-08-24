@@ -96,6 +96,21 @@ def run():
             with open('build/' + course + '/' + name + '.html', 'w') as f:
                 f.write(page.render(content=content))
 
+        # Homepage
+        with open('build/index.html', 'w') as f:
+            f.write(jinja.get_template("home.html").render())
+        # Articles index
+        with open('build/articles.html', 'w') as f:
+            page = jinja.get_template("articles.html")
+            f.write(page.render(articles=articles_urls()))
+        # About
+        with open('build/about.html', 'w') as f:
+            f.write(jinja.get_template('about.html').render())
+        # Courses index
+        with open('build/courses.html', 'w') as f:
+            page = jinja.get_template('courses.html')
+            f.write(page.render(courses=courses()))
+
         os.system("cp -r assets build/assets")
 
     finally:
@@ -143,3 +158,19 @@ def article_link(match):
 
     return "[" + link_text + "](/" + data["course"] + "/" + article_name + \
         ".html)"
+
+def articles_urls():
+    global ARTICLES
+    articles = []
+    for a in ARTICLES.keys():
+        meta = ARTICLES[a]
+        url = "/"+meta["course"]+"/"+a+".html"
+        articles.append({'title': meta['title'], 'url': url})
+    return articles
+
+def courses():
+    global ARTICLES
+    courses = set()
+    for a in ARTICLES.keys():
+        courses.add(ARTICLES[a]['course'])
+    return list(courses)

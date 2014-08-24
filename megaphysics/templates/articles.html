@@ -6,4 +6,8 @@
 	Eventually this will be more informative and contain featured articles, topic lists, etc.
 	<br><br>
 	Realistically, the idea is that people will trawl standalone articles using search, so stick a big search box here.
+  <br><br>
+  {% for article in articles %}
+    <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+  {% endfor %}
 {% endblock content %}

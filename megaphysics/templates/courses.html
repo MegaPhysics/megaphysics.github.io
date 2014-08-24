@@ -1,5 +1,9 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-	This is where a list of courses will go. Maybe include number of articles in each course (can use db for this).
+	TODO: turn these into links to course pages?
+  <br><br>
+  {% for c in courses %}
+    <li>{{ c }}</li>
+  {% endfor %}
 {% endblock content %}

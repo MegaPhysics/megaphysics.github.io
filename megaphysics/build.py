@@ -15,12 +15,11 @@ from jinja2 import Environment, PackageLoader
 # This dictionary will store all metadata for the articles,
 # this is so we can dynamically generate valid links between articles.
 ARTICLES = {}
-jinja = Environment(loader = PackageLoader('megaphysics', 'templates'))
+jinja = Environment(loader=PackageLoader('megaphysics', 'templates'))
 BUILD_DIR = os.getcwd()
 
 
 # -------- Functions -------- #
-
 
 def files():
 
@@ -88,7 +87,10 @@ def run():
             if not os.path.isdir("build/" + course):
                 os.system("mkdir build/" + course)
 
-            content = subprocess.check_output(["pandoc", "-t", "html5", "--template="+BUILD_DIR+"/template.html", BUILD_DIR+"/temp/"+f])
+            content = subprocess.check_output(["pandoc", "-t", "html5",
+                                               "--template=" + BUILD_DIR +
+                                               "/template.html", BUILD_DIR +
+                                               "/temp/" + f])
 
             page = jinja.get_template("article.html")
             with open('build/' + course + '/' + name + '.html', 'w') as f:

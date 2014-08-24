@@ -85,7 +85,7 @@ def run():
                 raise Exception(f + " metadata has no 'course' entry")
 
             if not os.path.isdir("build/" + course):
-                subprocess.call(['mkdir', 'build/'+course])
+                subprocess.call(['mkdir', 'build/' + course])
 
             content = subprocess.check_output(["pandoc", "-t", "html5",
                                                "--template=" + BUILD_DIR +

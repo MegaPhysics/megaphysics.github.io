@@ -56,13 +56,13 @@ def run():
 
     # Empty the build dir.
     if os.path.isdir("build"):
-        os.system("rm -r build")
+        subprocess.call(['rm', '-r', 'build'])
 
-    os.system("mkdir build")
+    subprocess.call(['mkdir', 'build'])
 
     # We will make destructive modifications to the articles before passing
     # them to pandoc, so copy them to a temp location first.
-    os.system("cp -r articles temp")
+    subprocess.call(['cp', '-r', 'articles', 'temp'])
 
     # Get metadata for all the articles
     # TODO: check that all metadata is valid at this point
@@ -85,7 +85,7 @@ def run():
                 raise Exception(f + " metadata has no 'course' entry")
 
             if not os.path.isdir("build/" + course):
-                os.system("mkdir build/" + course)
+                subprocess.call(['mkdir', 'build/' + course])
 
             content = subprocess.check_output(["pandoc", "-t", "html5",
                                                "--template=" + BUILD_DIR +
@@ -96,11 +96,11 @@ def run():
             with open('build/' + course + '/' + name + '.html', 'w') as f:
                 f.write(page.render(content=content))
 
-        os.system("cp -r assets build/assets")
+        subprocess.call(['cp', '-r', 'assets', 'build/assets'])
 
     finally:
         # Clean up after ourselves
-        os.system("rm -r temp")
+        subprocess.call(['rm', '-r', 'temp'])
 
 
 def generate_links(ARTICLES):

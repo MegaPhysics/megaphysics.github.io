@@ -77,6 +77,9 @@ def run():
         generate_links(ARTICLES)
 
         for f in files():
+            if f[0] == ".":
+                break
+
             name = re.match("(.+)\.", f).group(1)
             print "rendering " + f
             course = ARTICLES[name].get('course')
@@ -159,6 +162,7 @@ def article_link(match):
     return "[" + link_text + "](/" + data["course"] + "/" + article_name + \
         ".html)"
 
+
 def articles_urls():
     global ARTICLES
     articles = []
@@ -167,6 +171,7 @@ def articles_urls():
         url = "/"+meta["course"]+"/"+a+".html"
         articles.append({'title': meta['title'], 'url': url})
     return articles
+
 
 def courses():
     global ARTICLES

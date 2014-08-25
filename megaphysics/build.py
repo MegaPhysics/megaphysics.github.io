@@ -140,6 +140,12 @@ def generate_links(ARTICLES):
 
 def image_link(article_name):
 
+    """A generator for functions that can be passed to re.sub to format
+    image links.
+    Returns a function that expects a match of the form [alt text](image name)
+    and returns the correct (markdown formatted) link for the image.
+    """
+
     def repl(match):
         alt_text = match.group(1)
         image_name = match.group(2)
@@ -150,6 +156,11 @@ def image_link(article_name):
 
 
 def article_link(match):
+
+    """A replace function that can be passed to re.sub.
+    Expects a match of the form [link text](article name) and returns the
+    correct (markdown formatted) link for the article.
+    """
 
     global ARTICLES
     link_text = match.group(1)
@@ -164,6 +175,10 @@ def article_link(match):
 
 
 def articles_urls():
+
+    """Returns a list of {title, url} dictionaries, one for each article.
+    """
+
     global ARTICLES
     articles = []
     for a in ARTICLES.keys():
@@ -174,6 +189,10 @@ def articles_urls():
 
 
 def courses():
+
+    """Returns an array of (unique) courses.
+    """
+
     global ARTICLES
     courses = set()
     for a in ARTICLES.keys():

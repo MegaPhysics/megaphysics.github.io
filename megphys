@@ -1,0 +1,36 @@
+#!/bin/bash
+
+function usage {
+    echo -e "Usage: megphys [COMMAND]"
+    echo -e
+    echo -e "Perform MegaPhysics website functions."
+    echo -e
+    echo -e "Commands:"
+    echo -e "\tbuild\tBuild the website HTML files into 'build' directory."
+    echo -e "\tserve\tServe the website to localhost:8000 using SimpleHTTPServer"
+    echo -e "\tclean\tRemove the 'build' directory, containing the compiled"
+    echo -e "\t     \tHTML code."
+}
+
+if [[ "$1" == "build" ]]; then
+    python run.py
+elif [[ "$1" == "serve" ]]; then
+    if cd build; then
+        python -m SimpleHTTPServer
+        cd ..
+    else
+        echo "Build not found. Try running 'megphys build', or run 'megphys'"
+        echo "for usage."
+        exit 1
+    fi
+elif [[ "$1" == "clean" ]]; then
+    if rm -r build; then
+        echo "Successfully cleaned 'build' directory."
+    else
+        echo "Error cleaning 'build' directory."
+        exit 1
+    fi
+else
+    usage
+    exit 1
+fi

@@ -1,5 +1,5 @@
 ---
-title: Atoms
+title: Elephants
 course: Articles
 author: Jamie Barbecue
 ---

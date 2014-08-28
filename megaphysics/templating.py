@@ -22,4 +22,4 @@ def generate_page(template, filepath, **kwargs):
 	page = environment.get_template(template)
 
 	with open(filepath, 'w') as f:
-		f.write(page.render(**kwargs))
+		f.write(page.render(**kwargs).encode('utf-8'))

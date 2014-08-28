@@ -74,12 +74,10 @@ def generate_article(f, articles_metadata, build_dir):
 
 	content = subprocess.check_output([
 		"pandoc",
-		"-t",
-		"html5",
-		"--template=" + build_dir +
-		"/template.html", build_dir +
-		"/temp/" + f
-	])
+		"-t", "html5",
+		"-S",
+		build_dir + "/temp/" + f
+	]).decode('utf-8')
 
 	article_path = 'build/' + course + '/' + name + '.html'
 	generate_page('article.html', article_path, content = content)

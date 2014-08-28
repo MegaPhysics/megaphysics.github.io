@@ -1,21 +1,27 @@
+# The build code for the site.
+
 # -------- Standard Libraries -------- #
 
 import os
 import re
 import subprocess
+from functools import partial
 
 
 # -------- Third Party Libraries -------- #
 
 import yaml
-from jinja2 import Environment, PackageLoader
+
+
+# -------- Project Libraries -------- #
+
+from megaphysics.templating import generate_page
+from megaphysics.database import generate_database
+from megaphysics.models import Course
+
 
 # -------- Globals -------- #
 
-# This dictionary will store all metadata for the articles,
-# this is so we can dynamically generate valid links between articles.
-ARTICLES = {}
-jinja = Environment(loader=PackageLoader('megaphysics', 'templates'))
 BUILD_DIR = os.getcwd()
 
 
@@ -43,11 +49,28 @@ def metadata(filename):
     return yaml.load(yaml_block)
 
 
+def generate_base_site(articles_metadata):
+
+    # Creates homepage.
+    generate_page('home.html', 'build/index.html')
+
+    # Creates about page.
+    generate_page('about.html', 'build/about.html')
+
+    # Creates articles index.
+    generate_page('articles.html',
+                  'build/articles.html',
+                  articles = articles_urls(articles_metadata))
+
+    # Creates courses index.
+    generate_page('courses.html',
+                  'build/courses.html',
+                  articles = courses(articles_metadata))
+
+
 def run():
 
     """Runs the build."""
-
-    global jinja
 
     # Check if we're in the root dir.
     if re.search("MegaPhysics$", os.getcwd()) is None:
@@ -67,19 +90,23 @@ def run():
     # Get metadata for all the articles
     # TODO: check that all metadata is valid at this point
     # e.g. must have a 'course' field
-    global ARTICLES
+    # This dictionary will store all metadata for the articles,
+    # this is so we can dynamically generate valid links between articles.
+    articles_metadata = {}
+
     for f in files():
         name = re.match("(.+)\.", f).group(1)
-        ARTICLES[name] = metadata(f)
+        articles_metadata[name] = metadata(f)
 
     try:
 
-        generate_links(ARTICLES)
+        generate_links(articles_metadata)
 
+        # Builds each individual article page.
         for f in files():
             name = re.match("(.+)\.", f).group(1)
             print "rendering " + f
-            course = ARTICLES[name].get('course')
+            course = articles_metadata[name].get('course')
 
             if course is None:
                 raise Exception(f + " metadata has no 'course' entry")
@@ -92,24 +119,11 @@ def run():
                                                "/template.html", BUILD_DIR +
                                                "/temp/" + f])
 
-            page = jinja.get_template("article.html")
-            with open('build/' + course + '/' + name + '.html', 'w') as f:
-                f.write(page.render(content=content))
+            article_path = 'build/' + course + '/' + name + '.html'
+            generate_page('article.html', article_path, content = content)
 
-        # Homepage
-        with open('build/index.html', 'w') as f:
-            f.write(jinja.get_template("home.html").render())
-        # Articles index
-        with open('build/articles.html', 'w') as f:
-            page = jinja.get_template("articles.html")
-            f.write(page.render(articles=articles_urls()))
-        # About
-        with open('build/about.html', 'w') as f:
-            f.write(jinja.get_template('about.html').render())
-        # Courses index
-        with open('build/courses.html', 'w') as f:
-            page = jinja.get_template('courses.html')
-            f.write(page.render(courses=courses()))
+        # Builds the core site pages (index, about etc.).
+        generate_base_site(articles_metadata)
 
         subprocess.call(['cp', '-r', 'assets', 'build/assets'])
 
@@ -118,7 +132,7 @@ def run():
         subprocess.call(['rm', '-r', 'temp'])
 
 
-def generate_links(ARTICLES):
+def generate_links(articles_metadata):
 
     """Looks for links of the form [text](link) and for those where 'link' is a
     valid article name, replaces 'link' with the correct url to the article.
@@ -129,7 +143,11 @@ def generate_links(ARTICLES):
 
         image = image_link(filename.replace(".md", ""))
         text = re.sub("\!\[(.+?)\]\((.+?)\)", image, text)
-        text = re.sub("\[(.+?)\]\((.+?)\)", article_link, text)
+        text = re.sub(
+            "\[(.+?)\]\((.+?)\)",
+            partial(article_link,
+            articles_metadata),
+            text)
 
         with open("temp/" + filename, "w") as f:
             f.write(text)
@@ -146,12 +164,11 @@ def image_link(article_name):
     return repl
 
 
-def article_link(match):
+def article_link(articles_metadata, match):
 
-    global ARTICLES
     link_text = match.group(1)
     article_name = match.group(2)
-    data = ARTICLES.get(article_name)
+    data = articles_metadata.get(article_name)
 
     if data is None:
         return "[" + link_text + "](" + article_name + ")"
@@ -159,18 +176,29 @@ def article_link(match):
     return "[" + link_text + "](/" + data["course"] + "/" + article_name + \
         ".html)"
 
-def articles_urls():
-    global ARTICLES
+
+def articles_urls(articles_metadata):
     articles = []
-    for a in ARTICLES.keys():
-        meta = ARTICLES[a]
+    for a in articles_metadata.keys():
+        meta = articles_metadata[a]
         url = "/"+meta["course"]+"/"+a+".html"
         articles.append({'title': meta['title'], 'url': url})
     return articles
 
-def courses():
-    global ARTICLES
+
+def courses(articles_metadata):
     courses = set()
-    for a in ARTICLES.keys():
-        courses.add(ARTICLES[a]['course'])
+    for a in articles_metadata.keys():
+        courses.add(articles_metadata[a]['course'])
     return list(courses)
+
+
+def courses_list():
+
+    """Pulls in and returns a list of courses from the database."""
+
+    # Creates database session.
+    db = generate_database()
+    course_list = db.query(Course).order_by(Course.name)
+
+    return course_list

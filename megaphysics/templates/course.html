@@ -1,0 +1,7 @@
+{% extends "base_template.html" %}
+
+{% block content %}
+	{% for article in course %}
+		- {{ article }}<br>
+	{% endfor %}
+{% endblock content %}

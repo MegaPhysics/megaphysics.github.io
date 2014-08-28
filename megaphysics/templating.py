@@ -1,10 +1,5 @@
 # The template generator.
 
-# -------- Standard Libraries -------- #
-
-import os
-
-
 # -------- Third Party Libraries -------- #
 
 from jinja2 import Environment, PackageLoader
@@ -12,31 +7,19 @@ from jinja2 import Environment, PackageLoader
 
 # -------- Template Generator -------- #
 
-def generate_templates():
+def create_jinja_env():
 
-    """Creates a demo pair of templates for the site."""
+	"""Returns a jinja2 environment."""
 
-    # The location to save the result of the demo.
-    BUILD_LOCATION = 'template_demo'
+	return Environment(loader = PackageLoader('megaphysics', 'templates'))
 
-    # Makes sure the demo subdirectory exists.
-    if not os.path.isdir(BUILD_LOCATION):
-        os.mkdir(BUILD_LOCATION)
 
-    # Creates a jinja2 environment.
-    jinja_env = Environment(loader=PackageLoader('megaphysics', 'templates'))
+def generate_page(template, filepath, **kwargs):
 
-    # Cycles through templates and renders them.
-    for template in os.listdir('megaphysics/templates'):
+	"""Renders a page to a file, given a template and the path of the file."""
 
-        # Only includes html files, and excludes stuff like the base template.
-        if template.endswith('.html') and 'template' not in template:
+	environment = create_jinja_env()
+	page = environment.get_template(template)
 
-            # Pull in template.
-            page = jinja_env.get_template(template)
-            # Render to file.
-            with open('template_demo/' + template, 'w') as f:
-                f.write(page.render())
-
-    print 'Templates rendered. Find them in directory \'' + BUILD_LOCATION + \
-        '\'.'
+	with open(filepath, 'w') as f:
+		f.write(page.render(**kwargs))

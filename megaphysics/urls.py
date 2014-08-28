@@ -22,8 +22,7 @@ def generate_links(articles_metadata):
         text = re.sub("\!\[(.+?)\]\((.+?)\)", image, text)
         text = re.sub(
             "\[(.+?)\]\((.+?)\)",
-            partial(article_link,
-            articles_metadata),
+            partial(article_link, articles_metadata),
             text)
 
         with open("temp/" + filename, "w") as f:

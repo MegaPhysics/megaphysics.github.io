@@ -1,5 +1,4 @@
 build/
-template_demo/
 *.pyc
 
 # Backup files

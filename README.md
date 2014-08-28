@@ -1,6 +1,8 @@
 MegaPhysics
 ===========
 
+![build status](https://api.travis-ci.org/Ap0c/MegaPhysics.svg?branch=development)
+
 A Physics wiki (sort of).
 
 ## Summary

@@ -8,6 +8,7 @@ function usage {
     echo -e "Commands:"
     echo -e "\tbuild\tBuild the website HTML files into 'build' directory."
     echo -e "\tserve\tServe the website to localhost:8000 using SimpleHTTPServer"
+    echo -e "\tgo\tEquivalent to build and then serve"
     echo -e "\tclean\tRemove the 'build' directory, containing the compiled"
     echo -e "\t     \tHTML code."
 }
@@ -23,6 +24,9 @@ elif [[ "$1" == "serve" ]]; then
         echo "for usage."
         exit 1
     fi
+elif [[ "$1" == "go" ]]; then
+    ./megphys build
+    ./megphys serve
 elif [[ "$1" == "clean" ]]; then
     if rm -r build; then
         echo "Successfully cleaned 'build' directory."

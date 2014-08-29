@@ -1,5 +1,5 @@
 ---
-title: Atoms
+title: Astrophysics
 course: Articles
 author: Jamie
 ---

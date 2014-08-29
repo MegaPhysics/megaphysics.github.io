@@ -9,17 +9,17 @@ from jinja2 import Environment, PackageLoader
 
 def create_jinja_env():
 
-	"""Returns a jinja2 environment."""
+    """Returns a jinja2 environment."""
 
-	return Environment(loader = PackageLoader('megaphysics', 'templates'))
+    return Environment(loader=PackageLoader('megaphysics', 'templates'))
 
 
 def generate_page(template, filepath, **kwargs):
 
-	"""Renders a page to a file, given a template and the path of the file."""
+    """Renders a page to a file, given a template and the path of the file."""
 
-	environment = create_jinja_env()
-	page = environment.get_template(template)
+    environment = create_jinja_env()
+    page = environment.get_template(template)
 
-	with open(filepath, 'w') as f:
-		f.write(page.render(**kwargs).encode('utf-8'))
+    with open(filepath, 'w') as f:
+        f.write(page.render(**kwargs).encode('utf-8'))

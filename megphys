@@ -34,6 +34,10 @@ elif [[ "$1" == "clean" ]]; then
         echo "Error cleaning 'build' directory."
         exit 1
     fi
+elif [[ "$1" == "test" ]]; then
+    nosetests
+elif [[ "$1" == "update_tests" ]]; then
+    python test.py
 else
     usage
     exit 1

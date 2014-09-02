@@ -1,8 +1,6 @@
----
 title: Quantum Mechanics
 course: Articles
 author: Harry Maclean
----
 
 Introduction
 ============

@@ -1,8 +1,7 @@
----
 title: Quarks
 course: Articles
 author: Jamie Barbecue
----
+
 Quark
 =====
 
@@ -35,6 +34,6 @@ needed.
 See Also
 --------
 
-- [Proton](article.php?article_name=Proton)\
+- [Proton](article.php?article_name=Proton)
  - [Atom](atom-1)
 

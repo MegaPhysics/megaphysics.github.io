@@ -1,8 +1,7 @@
----
 title: Astrophysics
 course: Articles
 author: Jamie
----
+
 Astrophysics
 ====
 

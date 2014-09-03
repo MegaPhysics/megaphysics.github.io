@@ -10,6 +10,7 @@ import subprocess
 # -------- Third Party Libraries -------- #
 
 import yaml
+import markdown
 
 
 # -------- Project Libraries -------- #
@@ -34,17 +35,20 @@ def files():
 
 def metadata(filename):
 
-    """Extract the YAML block at the top of each article and parse it into a
+    """Extract the metadata block at the top of each article and parse it into a
     dictionary.
     """
 
     with open("./articles/" + filename) as f:
         contents = f.read()
 
-    match = re.search('---\n(.+?)\n---', contents, flags=re.DOTALL)
-    yaml_block = match.group(1)
-
-    return yaml.load(yaml_block)
+    md = markdown.Markdown(extensions=['meta'])
+    md.convert(contents)
+    meta = md.Meta
+    meta["course"] = meta["course"][0]
+    meta["title"] = meta["title"][0]
+    meta["author"] = meta["author"][0]
+    return meta
 
 
 def generate_base_site(articles_metadata):

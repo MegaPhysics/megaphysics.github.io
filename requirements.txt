@@ -4,3 +4,4 @@ PyYAML==3.11
 SQLAlchemy==0.9.7
 wsgiref==0.1.2
 BeautifulSoup==3.2.1
+markdown==2.4.1

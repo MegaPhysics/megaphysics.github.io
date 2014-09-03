@@ -2,12 +2,10 @@ import subprocess
 from megaphysics.build import run
 from BeautifulSoup import BeautifulSoup
 
-article_text = """
----
-title: Test
+article_text = """title: Test
 course: Articles
 author: Test Author
----
+
 Test Article
 ====
 
@@ -24,10 +22,15 @@ def test_build():
 def test_article():
     with open('articles/test.md', 'w') as f:
         f.write(article_text)
-    run()
+    try:
+        run()
+    except Exception, e:
+        raise e
+    finally:
+        subprocess.call(["rm", "articles/test.md"])
     test = BeautifulSoup(open('build/Articles/test.html', 'r').read()).prettify()
     ref = BeautifulSoup(open('test_article_reference.html', 'r').read()).prettify()
-    subprocess.call(["rm", "articles/test.md"])
+    subprocess.call(["rm", "build/Articles/test.html"])
     print test
     print ref
     assert test == ref, "Rendered article is not the same as reference."

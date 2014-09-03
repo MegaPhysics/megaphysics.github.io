@@ -1,8 +1,7 @@
----
 title: Elephants
 course: Articles
 author: Jamie Barbecue
----
+
 Elephants
 ====
 

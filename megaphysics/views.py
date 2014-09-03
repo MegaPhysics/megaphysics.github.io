@@ -6,6 +6,9 @@ import os
 import re
 import subprocess
 
+# -------- Third Party Libraries -------- #
+
+import markdown
 
 # -------- Project Libraries -------- #
 
@@ -72,12 +75,8 @@ def generate_article(f, articles_metadata, build_dir):
     if not os.path.isdir("build/" + course):
         subprocess.call(['mkdir', 'build/' + course])
 
-    content = subprocess.check_output([
-        "pandoc",
-        "-t", "html5",
-        "-S",
-        build_dir + "/temp/" + f
-    ]).decode('utf-8')
+    text = open(build_dir+"/temp/"+f).read()
+    content = markdown.markdown(text, ["extra", "meta"])
 
     article_path = 'build/' + course + '/' + name + '.html'
     generate_page('article.html', article_path, content=content)

@@ -16,6 +16,15 @@ Particles are solid and definite. They bounce off each other, they take up space
 
 Waves don't behave in the same manner. Waves will happily occupy exactly the same space - two sets of ripples on a lake will pass right through each other and carry on without seeming to notice. Instead of colliding, waves *interfere*. If two waves happen to peak at the same place at the same time, the resulting peak will be the height of the two individual peaks added together. This is a fundamental property of waves. If you started placing waves onto your bookshelf, they would move up and down the shelf, interfering with each other to form one combined wave that filled the entire shelf.
 
-It's clear that particles and waves are very different from each other, so it seems impossible that they can represent the same thing.
+It's clear that particles and waves are very different from each other, so it seems impossible that they can represent the same thing. Yet a wide variety of experiments seemed to show contradictory results, some indicating that certain subatomic particles (electrons, photons) were, well, *particles*, some indicating that they were waves, displaying wave-like behaviour.
+
+[TODO: summarise these experiments. Young's slits, Planck's solution to the Ultraviolet Catastrophe, the Photoelectric Effect, etc]
+
+It has since been shown that even larger particles like atoms and molecules exhibit wave behaviour. Thus the unavoidable conclusion is that matter has *wave-particle duality*. It exists as both a particle and a wave, simultaneously.
 
 [TODO: write more of this]
+
+Wavefunctions and Probability Distributions
+===========================================
+
+[TODO: and this]

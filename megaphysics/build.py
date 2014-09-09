@@ -87,6 +87,8 @@ def run():
     # TODO: check that all metadata is valid at this point
     # e.g. must have a 'course' field
     for f in files():
+        if f[0] == ".":
+            continue
         name = re.match("(.+)\.", f).group(1)
         articles_metadata[name] = metadata(f)
 

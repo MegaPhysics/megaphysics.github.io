@@ -50,7 +50,7 @@ function update_tests {
 
 function compress_assets {
     python minify.py && \
-        cat assets/flatly-bootstrap.min.css assets/megaphysics.min.css > assets/styles.min.css && \
+        cat assets/flatly-bootstrap.min.css assets/megaphysics.min.css > build/assets/styles.min.css && \
         echo "Assets successfully compressed."
 }
 

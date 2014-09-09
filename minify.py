@@ -51,7 +51,7 @@ def main():
     css_files = filter(is_css, all_files)
 
     for f in css_files:
-        print "Minifying", f
+        print "minifying", f
         minify(f)
 
 if __name__ == "__main__":

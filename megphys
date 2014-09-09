@@ -13,9 +13,11 @@ function usage {
     echo -e "\t     \tHTML code."
 }
 
-if [[ "$1" == "build" ]]; then
+function build {
     python run.py
-elif [[ "$1" == "serve" ]]; then
+}
+
+function serve {
     if cd build; then
         python -m SimpleHTTPServer
         cd ..
@@ -24,20 +26,32 @@ elif [[ "$1" == "serve" ]]; then
         echo "for usage."
         exit 1
     fi
-elif [[ "$1" == "go" ]]; then
-    ./megphys build
-    ./megphys serve
-elif [[ "$1" == "clean" ]]; then
+}
+
+function go {
+    build
+    serve
+}
+
+function clean {
     if rm -r build; then
         echo "Successfully cleaned 'build' directory."
     else
         echo "Error cleaning 'build' directory."
         exit 1
     fi
-elif [[ "$1" == "test" ]]; then
-    nosetests
-elif [[ "$1" == "update_tests" ]]; then
+}
+
+function update_tests {
     python test.py
+}
+
+if [[ "$1" == "build" ]]; then build
+elif [[ "$1" == "serve" ]]; then serve
+elif [[ "$1" == "go" ]]; then go
+elif [[ "$1" == "clean" ]]; then clean
+elif [[ "$1" == "test" ]]; then nosetests
+elif [[ "$1" == "update_tests" ]]; then update_tests
 else
     usage
     exit 1

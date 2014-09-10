@@ -48,12 +48,20 @@ function update_tests {
     python test.py
 }
 
+function compress_assets {
+    python minify.py && \
+        cat assets/flatly-bootstrap.min.css assets/megaphysics.min.css > build/assets/styles.min.css && \
+        cat assets/jquery/jquery-1.11.1.min.js assets/bootstrap/js/bootstrap.min.js > build/assets/javascripts.min.js && \
+        echo "Assets successfully compressed."
+}
+
 if [[ "$1" == "build" ]]; then build
 elif [[ "$1" == "serve" ]]; then serve
 elif [[ "$1" == "go" ]]; then go
 elif [[ "$1" == "clean" ]]; then clean
 elif [[ "$1" == "test" ]]; then nosetests
 elif [[ "$1" == "update_tests" ]]; then update_tests
+elif [[ "$1" == "compress_assets" ]]; then compress_assets
 else
     usage
     exit 1

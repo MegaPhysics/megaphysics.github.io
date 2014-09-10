@@ -2,81 +2,57 @@
 <html>
 
 <head>
-	<meta charset="utf-8">
-	
-		<title>MegaPhysics</title>
-	
 
-	<style type = "text/css">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	body {
-		font-family: Verdana, sans-serif;
-		color: black;
-		background: white;
-		margin: 0;
-	}
+    
+            <title>MegaPhysics</title>
+    
 
-	#content {
-		width: 58em;
-		margin: 0 auto;
-		background: white;
-		height: 100%;
-	}
+    
 
-	#navbar {
-		width: 58em;
-		margin: 0 auto;
-		background: white;
-		padding-top: 3em;
-		padding-bottom: 2em;
-	}
-
-	#navcontent {
-		/*width: 15em;*/
-		margin-left: auto;
-		margin-right: auto;
-		font-size: 2.5em;
-	}
-
-	a:link,
-	a:visited {
-		color: #3D3D3D;
-		text-decoration: none;
-	}
-
-	a:hover {
-		color: #FF7777;
-	}
-
-	h1,
-	h2,
-	h3,
-	h4,
-	h5,
-	h6 {
-		font-weight: normal;
-	}
-
-	</style>
-
-	
-
+    <!-- Minified and concatenated css -->
+    <link href="/assets/styles.min.css" rel="stylesheet">
+    
 </head>
 
 <body>
 
-	<div id = "navbar"><div id = "navcontent">
+    <div class="navbar navbar-default navbar-static-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index.html">Megaphysics</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li  ><a href="/index.html">Home</a></li>
+                    <li  ><a href="/about.html">About</a></li>
+                    <li  ><a href="/articles.html">Articles</a></li>
+                    <li  ><a href="/courses.html">Courses</a></li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
 
-		<a href = "/index.html">Home</a> <a href = "/articles.html">Articles</a> <a href = "/courses.html">Courses</a> <a href = "/about.html">About</a>
-
-	</div></div>
-
-	<div id = "content">
-		
+    <div class="container">
+        <div class="maincontent">
+            
   <h1>Test Article</h1>
 <p>This article is a test to ensure that the build system works correctly.</p>
 
-	</div>
+        </div>
+    </div><!-- /.container -->
+
+    <!-- Include combined jQuery and bootstrap javascript -->
+    <script src="/assets/javascripts.min.js"></script>
 
 </body>
 </html>

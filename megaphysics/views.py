@@ -22,14 +22,14 @@ def index():
 
     """Creates the home page."""
 
-    generate_page('home.html', 'build/index.html')
+    generate_page('home.html', 'build/index.html', pagetitle='index')
 
 
 def about():
 
     """Creates the about page."""
 
-    generate_page('about.html', 'build/about.html')
+    generate_page('about.html', 'build/about.html', pagetitle='about')
 
 
 def article_list(articles_metadata):
@@ -39,7 +39,8 @@ def article_list(articles_metadata):
     generate_page(
         'articles.html',
         'build/articles.html',
-        articles=articles_urls(articles_metadata)
+        articles=articles_urls(articles_metadata),
+        pagetitle='articles'
     )
 
 
@@ -57,7 +58,8 @@ def course_list(articles_metadata):
     generate_page(
         'courses.html',
         'build/courses.html',
-        courses=courses
+        courses=courses,
+        pagetitle='courses'
     )
 
 

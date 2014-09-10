@@ -9,6 +9,12 @@ from functools import partial
 
 # -------- URLs and Linking -------- #
 
+if 'MEGPHYS_ROOT' in os.environ:
+    ROOT = os.environ['MEGPHYS_ROOT']
+else:
+    ROOT = "/"
+
+
 def generate_links(articles_metadata):
 
     """Looks for links of the form [text](link) and for those where 'link' is a
@@ -43,7 +49,7 @@ def article_link(articles_metadata, match):
     if data is None:
         return "[" + link_text + "](" + article_name + ")"
 
-    return "[" + link_text + "](/" + data["course"] + "/" + article_name + \
+    return "[" + link_text + "](" + ROOT + data["course"] + "/" + article_name + \
         ".html)"
 
 
@@ -54,7 +60,7 @@ def articles_urls(articles_metadata):
     articles = []
     for a in articles_metadata.keys():
         meta = articles_metadata[a]
-        url = "/" + meta["course"] + "/" + a + ".html"
+        url = ROOT + meta["course"] + "/" + a + ".html"
         articles.append({'title': meta['title'], 'url': url})
     return articles
 
@@ -70,7 +76,7 @@ def image_link(article_name):
     def repl(match):
         alt_text = match.group(1)
         image_name = match.group(2)
-        return "![" + alt_text + "]" + "(/assets/article_assets/" + \
+        return "![" + alt_text + "]" + "(" + ROOT + "assets/article_assets/" + \
             article_name + "/images/" + image_name + ")"
 
     return repl

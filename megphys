@@ -9,6 +9,7 @@ function usage {
     echo -e "\tbuild\tBuild the website HTML files into 'build' directory."
     echo -e "\tserve\tServe the website to localhost:8000 using SimpleHTTPServer"
     echo -e "\tgo\tEquivalent to build and then serve"
+    echo -e "\tpublish\tBuild site and publish changes to server"
     echo -e "\tclean\tRemove the 'build' directory, containing the compiled"
     echo -e "\t     \tHTML code."
     echo -e "\ttest\tTest the current build system against a reference html file"
@@ -17,6 +18,19 @@ function usage {
 
 function build {
     python run.py
+}
+
+function publish {
+    if git diff-index --quiet HEAD --; then
+        MEGPHYS_ROOT="/MegaPhysics/" python run.py
+        cp -r build /tmp/megaphysics_build
+        git checkout gh-pages
+        cp -r /tmp/megaphysics_build/. .
+        rm -rf /tmp/megaphysics_build
+        echo "Now commit your changes and push to Ap0c/MegaPhysics."
+    else
+        echo "You must have a clean working directory to publish."
+    fi
 }
 
 function serve {
@@ -58,6 +72,7 @@ function compress_assets {
 if [[ "$1" == "build" ]]; then build
 elif [[ "$1" == "serve" ]]; then serve
 elif [[ "$1" == "go" ]]; then go
+elif [[ "$1" == "publish" ]]; then publish
 elif [[ "$1" == "clean" ]]; then clean
 elif [[ "$1" == "test" ]]; then nosetests
 elif [[ "$1" == "update_tests" ]]; then update_tests

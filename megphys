@@ -23,6 +23,7 @@ function build {
 function publish {
     if git diff-index --quiet HEAD --; then
         MEGPHYS_ROOT="/MegaPhysics/" python run.py
+        compress_assets
         cp -r build /tmp/megaphysics_build
         git checkout gh-pages
         cp -r /tmp/megaphysics_build/. .

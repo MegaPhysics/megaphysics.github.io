@@ -11,6 +11,8 @@ function usage {
     echo -e "\tgo\tEquivalent to build and then serve"
     echo -e "\tclean\tRemove the 'build' directory, containing the compiled"
     echo -e "\t     \tHTML code."
+    echo -e "\ttest\tTest the current build system against a reference html file"
+    echo -e "\tupdate_tests\tRebuild the reference html file for testing purposes"
 }
 
 function build {

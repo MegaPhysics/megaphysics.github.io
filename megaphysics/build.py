@@ -23,6 +23,7 @@ from megaphysics.minify import compress_assets
 
 BUILD_DIR = os.getcwd()
 STYLES_LOCATION = 'assets/site_assets'
+JQUERY_PATH = 'assets/jquery/jquery-1.11.1.min.js'
 
 
 # -------- Functions -------- #
@@ -118,7 +119,8 @@ def run():
             'assets/site_assets/bootstrap/fonts',
             'build/assets/bootstrap/fonts'])
 
-        compress_assets(STYLES_LOCATION)
+        # Creates CSS and js files.
+        compress_assets(JQUERY_PATH, STYLES_LOCATION)
 
     finally:
         # Clean up after ourselves

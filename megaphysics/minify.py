@@ -1,4 +1,4 @@
-# Minify all the import css files under `/assets`
+# Handles asset minification and compression.
 
 # -------- Standard Libraries -------- #
 
@@ -12,9 +12,11 @@ from cssmin import cssmin
 
 # -------- Functions -------- #
 
-def minify_css(css_file):
+def read_css(css_file):
 
-	""" Minify the css in filename. """
+	"""Returns the contents of a CSS file. If the file has not been minified,
+	does so.
+	"""
 
 	with open(css_file, 'r') as f:
 		contents = f.read()
@@ -25,26 +27,36 @@ def minify_css(css_file):
 		return cssmin(contents)
 
 
-def compress_assets(directory):
+def compress_assets(jquery_location, assets_location):
 
-	""" Gets list of css files, minifies them. """
+	"""Gets the CSS files and minifies them. Combines all the CSS into
+	one file, and all the js into another.
+	"""
 
 	print 'Compressing assets...'
 
+	# Opens files to be populated with minifed content.
 	with open('build/assets/styles.min.css', 'w') as mincss, \
 		open('build/assets/scripts.min.js', 'w') as minjs:
 
-		for path, dirs, files in os.walk(directory):
+		# Makes sure to write the jquery in first, as other things rely on it.
+		with open(jquery_location, 'r') as jquery:
+			minjs.write(jquery.read())
 
+		# Walks the asset directory.
+		for path, dirs, files in os.walk(assets_location):
+
+			# Runs through all the files found.
 			for f in files:
 
+				# Handles the CSS files.
 				if f.endswith('.css'):
 					filepath = os.path.join(path, f)
-					minified_css = minify_css(filepath)
+					minified_css = read_css(filepath)
 					mincss.write(minified_css)
 
-				elif f.endswith('js'):
-
+				# Handles the js files.
+				elif f.endswith('.js'):
 					filepath = os.path.join(path, f)
 					with open(filepath, 'r') as jsfile:
 						contents = jsfile.read()

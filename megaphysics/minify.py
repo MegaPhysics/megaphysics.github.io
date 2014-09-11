@@ -9,6 +9,7 @@ import re
 # -------- Third Party Libraries -------- #
 
 from cssmin import cssmin
+from slimit import minify as jsmin
 
 # -------- Globals -------- #
 
@@ -20,8 +21,11 @@ BUILD_PATH = "build/assets/"
 def import_file(filename, PATH):
     if os.path.isfile(PATH+filename):
         with open(PATH+filename, "r") as f:
-            if filename.endswith(".css") and not filename.endswith(".min.css"):
-                return cssmin(f.read())
+            if not re.search("\.min\.", filename):
+                if filename.endswith(".css"):
+                    return cssmin(f.read())
+                else:
+                    return jsmin(f.read(), mangle=True, mangle_toplevel=True)
             return f.read()
     return filename
 

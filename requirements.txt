@@ -3,3 +3,4 @@ MarkupSafe==0.23
 BeautifulSoup==3.2.1
 markdown==2.4.1
 cssmin==0.2.0
+slimit==0.8.1

@@ -9,7 +9,8 @@ from jinja2 import Environment, PackageLoader
 
 # -------- Template Generator -------- #
 
-environment = Environment(loader=PackageLoader('megaphysics', 'templates'))
+environment = Environment(loader = PackageLoader('megaphysics', 'templates'))
+
 if 'MEGPHYS_ROOT' in os.environ:
     environment.globals['ROOT'] = os.environ['MEGPHYS_ROOT']
 else:

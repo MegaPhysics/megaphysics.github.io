@@ -7,13 +7,15 @@ import re
 from functools import partial
 
 
-# -------- URLs and Linking -------- #
+# -------- Globals -------- #
 
 if 'MEGPHYS_ROOT' in os.environ:
     ROOT = os.environ['MEGPHYS_ROOT']
 else:
     ROOT = "/"
+ 
 
+# -------- URLs and Linking -------- #
 
 def generate_links(articles_metadata):
 

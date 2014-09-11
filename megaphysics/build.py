@@ -9,7 +9,6 @@ import subprocess
 
 # -------- Third Party Libraries -------- #
 
-import yaml
 import markdown
 
 
@@ -17,11 +16,13 @@ import markdown
 
 import megaphysics.views
 from megaphysics.urls import generate_links
+from megaphysics.minify import compress_assets
 
 
 # -------- Globals -------- #
 
 BUILD_DIR = os.getcwd()
+STYLES_LOCATION = 'assets/site_assets'
 
 
 # -------- Functions -------- #
@@ -48,6 +49,7 @@ def metadata(filename):
     meta["course"] = meta["course"][0]
     meta["title"] = meta["title"][0]
     meta["author"] = meta["author"][0]
+
     return meta
 
 
@@ -74,18 +76,16 @@ def run():
     if os.path.isdir("build"):
         subprocess.call(['rm', '-r', 'build'])
     subprocess.call(['mkdir', 'build'])
+    subprocess.call(['mkdir', 'build/assets'])
 
-    # We will make destructive modifications to the articles before passing
-    # them to pandoc, so copy them to a temp location first.
+    # Copy articles to temp location for processing.
     subprocess.call(['cp', '-r', 'articles', 'temp'])
 
-    # This dictionary will store all metadata for the articles,
-    # this is so we can dynamically generate valid links between articles.
+    # This dictionary will store all metadata for the articles.
     articles_metadata = {}
 
-    # Get metadata for all the articles
-    # TODO: check that all metadata is valid at this point
-    # e.g. must have a 'course' field
+    # Get metadata for all the articles,
+    # TODO: check that all metadata is valid at this point.
     for f in files():
         if f[0] == ".":
             continue
@@ -105,8 +105,20 @@ def run():
         # Builds the core site pages (index, about etc.).
         generate_base_site(articles_metadata)
 
-        # Copies in the assets folder.
-        subprocess.call(['cp', '-r', 'assets', 'build/assets'])
+        # Copies in the assets folders.
+        subprocess.call([
+            'cp',
+            '-r',
+            'assets/article_assets',
+            'build/assets/article_assets'])
+        subprocess.call(['mkdir', 'build/assets/bootstrap'])
+        subprocess.call([
+            'cp',
+            '-r',
+            'assets/site_assets/bootstrap/fonts',
+            'build/assets/bootstrap/fonts'])
+
+        compress_assets(STYLES_LOCATION)
 
     finally:
         # Clean up after ourselves

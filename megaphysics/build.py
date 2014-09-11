@@ -16,7 +16,7 @@ import markdown
 
 import megaphysics.views
 from megaphysics.urls import generate_links
-from megaphysics.minify import compress_assets
+from megaphysics.minify import compile_js, compile_css
 
 
 # -------- Globals -------- #
@@ -119,8 +119,9 @@ def run():
             'assets/site_assets/bootstrap/fonts',
             'build/assets/bootstrap/fonts'])
 
-        # Creates CSS and js files.
-        compress_assets(JQUERY_PATH, STYLES_LOCATION)
+        # Create CSS and js files.
+        compile_js(STYLES_LOCATION)
+        compile_css(STYLES_LOCATION)
 
     finally:
         # Clean up after ourselves

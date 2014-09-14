@@ -24,7 +24,7 @@ function publish {
     if git diff-index --quiet HEAD --; then
         python run.py
         cp -r build /tmp/megaphysics_build
-        git checkout gh-pages
+        git checkout master
         cp -r /tmp/megaphysics_build/. .
         rm -rf /tmp/megaphysics_build
         echo "Now commit your changes and push to Ap0c/MegaPhysics."

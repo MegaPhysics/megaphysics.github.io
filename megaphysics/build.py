@@ -69,7 +69,7 @@ def run():
     """Runs the build."""
 
     # Check if we're in the root dir.
-    if re.search("MegaPhysics$", os.getcwd()) is None:
+    if re.search("(MegaPhysics|megaphysics.github.io)$", os.getcwd()) is None:
         raise Exception(
             "This script must be run from the root MegaPhysics directory")
 

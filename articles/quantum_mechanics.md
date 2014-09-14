@@ -27,4 +27,4 @@ It has since been shown that even larger particles like atoms and molecules exhi
 Wavefunctions and Probability Distributions
 ===========================================
 
-[TODO: and this]
+In Quantum Mechanics the measurable properties of an object (things like its position and momentum) are called **observables**. A key difference between Classical and Quantum Mechanics is that the values of observables are not necessarily known until they are measured. When measured, an observable can take any value in a range of values known as its spectrum. Whereas in Classical Mechanics you know an object is in a specific place, in Quantum Mechanics you can never be sure! A famous example of this is the Uncertainty Principle, which effectively requires that the combined uncertainty in the position and momentum of a particle cannot drop below a certain value. Thus as you confine a particle's position and measure it more precisely, the spectrum of possible values for its momentum widens.

@@ -13,7 +13,7 @@ One other planned feature that will hopefully set this project apart is the addi
 
 ## Working Title
 
-The current working title of the project is MegaPhysics. This is a vague homage to Hyper- Physics, which is a teaching resource with similar aims, and was part of the inspiration for this project. This is not necessarily the final title of the site, other titles have been suggested. ’GigaPhysics’ for example.
+The current working title of the project is MegaPhysics. This is a vague homage to Hyper-Physics, which is a teaching resource with similar aims, and was part of the inspiration for this project. This is not necessarily the final title of the site, other titles have been suggested. ’GigaPhysics’ for example.
 
 ## Difficulty Levels
 

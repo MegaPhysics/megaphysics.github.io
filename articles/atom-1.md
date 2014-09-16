@@ -1,6 +1,6 @@
 title: Atoms
 course: Articles
-author: Jamie Barbecue
+author: Jamie
 
 Atom
 ====

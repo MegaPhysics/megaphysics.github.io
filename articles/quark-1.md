@@ -1,6 +1,6 @@
 title: Quarks
 course: Articles
-author: Jamie Barbecue
+author: Jamie
 
 Quark
 =====

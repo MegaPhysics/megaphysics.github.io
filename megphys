@@ -45,6 +45,7 @@ function serve {
 }
 
 function go {
+    clean
     build
     serve
 }

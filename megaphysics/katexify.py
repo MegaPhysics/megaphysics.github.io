@@ -24,7 +24,6 @@ def match_double_dollar(match):
 
 def match_single_dollar(match):
     """ Converts $<eqn>$ to HTML """
-    print(match.group(1))
     return eqn_to_html(match.group(1))
 
 

@@ -100,7 +100,7 @@ def run():
         # Builds each individual article page.
         for f in files():
             if f[0] == ".":
-                break
+                continue
             megaphysics.views.generate_article(f, articles_metadata, BUILD_DIR)
 
         # Builds the core site pages (index, about etc.).

@@ -10,7 +10,8 @@ Astrophysics could simply be described as the Physics of space. It is the study 
 For more information, and a more in depth explanation of the topics that astrophysics includes, see the *course*.
 
 See Also
---------
+========
+
 - Star
 - Galaxy
 - Planet

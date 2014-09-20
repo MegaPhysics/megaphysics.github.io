@@ -2,7 +2,8 @@ title: Chapter_1
 course: Mechanics
 author: Jamie
 
-# Chapter 1 - Introduction, Scalars and Vectors
+Chapter 1 - Introduction, Scalars and Vectors
+=============================================
 
 ## Introduction
 
@@ -32,3 +33,5 @@ Consider a car travelling along a road. You may want to know some information ab
 Hopefully you can see why vectors can be useful, they can tell you a lot about an object. They are also necessary for describing things like forces, which feature heavily in classical mechanics. But how do we represent vectors? Scalars are simple enough to write down, they are just numbers after all, but how do you write down a number that also contains a direction? Well, it can be done mathematically, or visually. We will just look at the visual method for now, which simply involves drawing arrows to represent the vector. The direction the arrow points can be used to give the direction of the vector, and the length of the arrow represents its size (magnitude).
 
 *SVGs of some arrows.*
+
+THERE WILL BE SOME PAGE NUMBERS HERE.

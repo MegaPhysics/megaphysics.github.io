@@ -1,4 +1,4 @@
-title: Atoms
+title: Atom
 course: Articles
 author: Jamie
 
@@ -11,8 +11,7 @@ tables, to complicated objects like human beings. However, they are
 very, very small, so lots of them must be joined together to make
 everyday objects.
 
-Structure
----------
+## Structure
 
 Atoms are made up of three types of particles: protons, neutrons and
 electrons. The protons and neutrons are clumped together in the centre
@@ -29,8 +28,7 @@ that an electron has is equal, but opposite, to the amount of charge
 that a proton has. Therefore, an atom must have an equal amount of
 protons and electrons for this cancellation to happen.
 
-Types of Atom
--------------
+## Types of Atom
 
 ![An unrelated abstract atom symbol](atom.svg)
 

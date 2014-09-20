@@ -1,9 +1,26 @@
 .maincontent {
-   padding: 0px 15px
+   padding: 0px 15px;
+   margin: 0 0 5em;
 }
 
-h1, h2, h3, h4, h5, h6 {
-   text-align: left
+/*h1, h2, h3, h4, h5, h6 {
+   text-align: left;
+   font-family: sans-serif;
+}*/
+
+h1 {
+	color: #007095;
+	padding-bottom: 0.3em;
+}
+
+h2 {
+	color: #008cba;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+}
+
+h3 {
+	color: #5bc0de;
 }
 
 img {

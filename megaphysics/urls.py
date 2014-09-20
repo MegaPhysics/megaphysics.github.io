@@ -13,7 +13,7 @@ if 'MEGPHYS_ROOT' in os.environ:
     ROOT = os.environ['MEGPHYS_ROOT']
 else:
     ROOT = "/"
- 
+
 
 # -------- URLs and Linking -------- #
 

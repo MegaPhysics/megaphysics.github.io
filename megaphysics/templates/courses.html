@@ -1,9 +1,11 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-	TODO: turn these into links to course pages?
-  <br><br>
-  {% for course in courses %}
-    <li>{{ course }}</li>
-  {% endfor %}
+	
+	<h1>Courses</h1>
+
+	{% for course in courses %}
+		<h4>{{ course }}</h4>
+	{% endfor %}
+
 {% endblock content %}

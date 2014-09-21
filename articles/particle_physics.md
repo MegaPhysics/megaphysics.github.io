@@ -2,13 +2,14 @@ title: Particle Physics
 course: Articles
 author: Drew Silcock
 
-Introduction
-============
+Particle Physics
+================
+
+## Introduction
 
 Particle physics is the study of the subatomic, microscopic particles that make up the universe, both at the elementary (unable to be split further) and composite (made up of smaller particles) levels. At this scale, quantum mechanics comes into effect, meaning some very strange things happen. Because the scales involved are so small, huge detectors are needed to give massive amounts of energy to these tiny subatomic particles, which are then collided together. The results of these collisions give hints into the correct theory that describes nature.
 
-The Standard Model
-==================
+## The Standard Model
 
 The main problem of particle physics is in combining all of the fundamental forces of nature into a single, unifying theory, which can describe all interactions between particles.
 
@@ -55,8 +56,8 @@ It is because gravity is irrelevant for the small scales that particle physics i
 
 The Standard Model of particle physics is the combination of three of the four fundamental forces (ignoring gravity): electromagnetism, weak force and strong force. It is one of the most successful theories in the history of physics, and there have been no experiments so far that contradict it.
 
-See also
-========
+See Also
+--------
 
 - Quantum mechanics
 - Gravity

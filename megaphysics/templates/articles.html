@@ -1,13 +1,10 @@
 {% extends "base_template.html" %}
 
 {% block content %}
-	This is the articles page. For the moment a list of articles should go here.
-	<br><br>
-	Eventually this will be more informative and contain featured articles, topic lists, etc.
-	<br><br>
-	Realistically, the idea is that people will trawl standalone articles using search, so stick a big search box here.
-  <br><br>
-  {% for article in articles %}
-    <li><a href="{{ article.url }}">{{ article.title }}</a></li>
-  {% endfor %}
+
+	<h1>Articles</h1>
+	{% for article in articles %}
+		<h4><a href="{{ article.url }}">{{ article.title }}</a></h4>
+	{% endfor %}
+
 {% endblock content %}

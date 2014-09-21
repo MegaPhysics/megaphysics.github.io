@@ -2,13 +2,14 @@ title: Quantum Mechanics
 course: Articles
 author: Harry Maclean
 
-Introduction
-============
+Quantum Mechanics
+=================
+
+## Introduction
 
 Quantum Mechanics is a mathematical model developed to explain the behaviour of physics at very small scales. At these scales (roughly one trillion trillion trillionth of a centimetre) strange things start to happen - things that can't be explained by classical physical theories. Quantum Mechanics is a model that has proved extremely successful at predicting (if not necessarily explaining) these behaviours. [TODO: list some everyday phenomena that are only explainable via QM?]
 
-Particles & Waves
-=================
+## Particles & Waves
 
 The fundamental difference between Quantum Mechanics and classical physics is the concept of *wave-particle duality*. This is the idea that everything in the universe that we consider to be made of particles (all matter, effectively) is **also** representable as a wave. Everything in Quantum Mechanics follows from this idea. In classical physics, things are either particles (protons, neutrons, electrons, etc) or they are waves (sound, vibrations, etc). Waves are more abstract phenomena: they aren't actually *made* of anything - rather they move through mediums with no physical form of their own.
 
@@ -26,7 +27,11 @@ It has since been shown that even larger particles like atoms and molecules exhi
 
 [TODO: write more of this]
 
-Wavefunctions and Probability Distributions
-===========================================
+## Wavefunctions and Probability Distributions
 
 In Quantum Mechanics the measurable properties of an object (things like its position and momentum) are called **observables**. A key difference between Classical and Quantum Mechanics is that the values of observables are not necessarily known until they are measured. When measured, an observable can take any value in a range of values known as its spectrum. Whereas in Classical Mechanics you know an object is in a specific place, in Quantum Mechanics you can never be sure! A famous example of this is the [Uncertainty Principle](uncertainty_principle), which effectively requires that the combined uncertainty in the position and momentum of a particle cannot drop below a certain value. Thus as you confine a particle's position and measure it more precisely, the spectrum of possible values for its momentum widens.
+
+See Also
+--------
+
+- Some stuff.

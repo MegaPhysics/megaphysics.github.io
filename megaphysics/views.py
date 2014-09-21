@@ -15,6 +15,7 @@ import markdown
 
 from megaphysics.templating import generate_page
 from megaphysics.urls import articles_urls
+from megaphysics.katexify import katexify
 
 
 # -------- Views -------- #
@@ -83,6 +84,7 @@ def generate_article(f, articles_metadata, build_dir):
 		subprocess.call(['mkdir', 'build/' + course])
 
 	text = open(build_dir+"/temp/"+f).read()
+	text = katexify(text)
 	content = markdown.markdown(text, ["extra", "meta"])
 
 	article_path = 'build/' + course + '/' + name + '.html'

@@ -18,7 +18,7 @@ There are four fundamental forces in nature (as currently understood). Each one 
 
 It is because gravity is irrelevant for the small scales that particle physics is concerned with that it can safely be ignored, because our instruments just aren't good enough to be able to detect the tiny tiny difference that gravity would make.
 
-<table class="table table-striped table-hover ">
+<table class="table table-striped table-hover">
   <thead>
     <tr>
       <th></th>

@@ -1,6 +1,7 @@
 title: Atom
 course: Articles
 author: Jamie
+live: true
 
 Atom
 ====

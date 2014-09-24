@@ -1,6 +1,7 @@
 title: Astrophysics
 course: Articles
 author: Jamie
+live: true
 
 Astrophysics
 ====

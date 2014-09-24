@@ -1,6 +1,7 @@
 title: Quantum Mechanics
 course: Articles
 author: Harry Maclean
+live: true
 
 Quantum Mechanics
 =================

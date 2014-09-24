@@ -1,6 +1,7 @@
 title: Particle Physics
 course: Articles
 author: Drew Silcock
+live: true
 
 Particle Physics
 ================

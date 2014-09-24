@@ -48,14 +48,16 @@ def metadata(filename):
     md = markdown.Markdown(extensions=['meta'])
     md.convert(contents)
     meta = md.Meta
-    meta["course"] = meta["course"][0]
+    meta["course"] = meta.get('course', ['Articles'])[0]
     meta["title"] = meta["title"][0]
     meta["author"] = meta["author"][0]
+    meta["type"] = meta["type"][0]
+    if "chapter" in meta:
+        meta["chapter"] = int(meta["chapter"][0])
     if "live" in meta and meta["live"][0] == "true":
         meta["live"] = True
     else:
         meta["live"] = False
-
     return meta
 
 

@@ -1,5 +1,5 @@
 title: Particle Physics
-course: Articles
+type: article
 author: Drew Silcock
 live: true
 

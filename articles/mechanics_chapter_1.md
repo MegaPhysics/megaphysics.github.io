@@ -1,5 +1,7 @@
 title: Chapter_1
+type: course
 course: Mechanics
+chapter: 1
 author: Jamie
 live: true
 

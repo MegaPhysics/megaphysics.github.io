@@ -14,7 +14,7 @@ import markdown
 # -------- Project Libraries -------- #
 
 from megaphysics.templating import generate_page
-from megaphysics.urls import articles_urls
+from megaphysics.urls import articles_urls, courses_urls
 from megaphysics.katexify import katexify
 
 
@@ -54,17 +54,13 @@ def course_list(articles_metadata):
 
 	"""Generates a list of all courses on the site."""
 
-	courses = set()
-
-	for a in articles_metadata.keys():
-		courses.add(articles_metadata[a]['course'])
-
-	courses = list(courses)
+	courses = courses_urls(articles_metadata)
+	sorted_courses = sorted(courses, key=itemgetter('title'))
 
 	generate_page(
 		'courses.html',
 		'build/courses.html',
-		courses = courses,
+		courses = sorted_courses,
 		pagetitle = 'courses'
 	)
 

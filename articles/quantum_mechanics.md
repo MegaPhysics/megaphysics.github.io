@@ -1,5 +1,5 @@
 title: Quantum Mechanics
-course: Articles
+type: article
 author: Harry Maclean
 live: true
 

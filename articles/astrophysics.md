@@ -1,5 +1,5 @@
 title: Astrophysics
-course: Articles
+type: article
 author: Jamie
 live: true
 

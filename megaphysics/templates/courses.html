@@ -5,7 +5,7 @@
 	<h1>Courses</h1>
 
 	{% for course in courses %}
-		<h4>{{ course }}</h4>
+		<h4><a href="{{ course['url'] }}">{{ course['title'] }}</a></h4>
 	{% endfor %}
 
 {% endblock content %}

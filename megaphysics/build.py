@@ -30,9 +30,10 @@ JQUERY_PATH = 'assets/jquery/jquery-1.11.1.min.js'
 
 def files():
 
-    """Returns a list of articles."""
-
-    return os.listdir("./articles")
+    """Returns a list of articles that are marked as live (via meta field)"""
+    # TODO: cache this
+    filenames = filter(lambda f: f[0] != '.', os.listdir('./articles'))
+    return filter(lambda f: metadata(f)["live"], filenames)
 
 
 def metadata(filename):
@@ -47,10 +48,16 @@ def metadata(filename):
     md = markdown.Markdown(extensions=['meta'])
     md.convert(contents)
     meta = md.Meta
-    meta["course"] = meta["course"][0]
+    meta["course"] = meta.get('course', ['Articles'])[0]
     meta["title"] = meta["title"][0]
     meta["author"] = meta["author"][0]
-
+    meta["type"] = meta["type"][0]
+    if "chapter" in meta:
+        meta["chapter"] = int(meta["chapter"][0])
+    if "live" in meta and meta["live"][0] == "true":
+        meta["live"] = True
+    else:
+        meta["live"] = False
     return meta
 
 
@@ -88,8 +95,6 @@ def run():
     # Get metadata for all the articles,
     # TODO: check that all metadata is valid at this point.
     for f in files():
-        if f[0] == ".":
-            continue
         name = re.match("(.+)\.", f).group(1)
         articles_metadata[name] = metadata(f)
 
@@ -99,8 +104,6 @@ def run():
 
         # Builds each individual article page.
         for f in files():
-            if f[0] == ".":
-                continue
             megaphysics.views.generate_article(f, articles_metadata, BUILD_DIR)
 
         # Builds the core site pages (index, about etc.).

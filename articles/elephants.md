@@ -1,5 +1,5 @@
 title: Elephants
-course: Articles
+type: article
 author: Jamie
 
 Elephants

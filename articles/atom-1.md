@@ -1,6 +1,7 @@
 title: Atom
-course: Articles
+type: article
 author: Jamie
+live: true
 
 Atom
 ====

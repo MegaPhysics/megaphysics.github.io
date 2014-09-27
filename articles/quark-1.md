@@ -1,6 +1,7 @@
 title: Quark
-course: Articles
+type: article
 author: Jamie
+live: true
 
 Quark
 =====

@@ -1,6 +1,9 @@
 title: Chapter_1
+type: course
 course: Mechanics
+chapter: 1
 author: Jamie
+live: true
 
 Chapter 1 - Introduction, Scalars and Vectors
 =============================================

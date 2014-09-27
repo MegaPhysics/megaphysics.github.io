@@ -3,6 +3,7 @@
 # -------- Standard Libraries -------- #
 
 import os
+from os.path import isfile, join
 import re
 from functools import partial
 
@@ -23,7 +24,9 @@ def generate_links(articles_metadata):
     valid article name, replaces 'link' with the correct url to the article.
     """
 
-    for filename in os.listdir("temp"):
+    # Exclude directories
+    files = [f for f in os.listdir("temp") if isfile(join("temp", f))]
+    for filename in files:
         text = open("temp/" + filename).read()
 
         image = image_link(filename.replace(".md", ""))
@@ -51,7 +54,7 @@ def article_link(articles_metadata, match):
     if data is None:
         return "[" + link_text + "](" + article_name + ")"
 
-    return "[" + link_text + "](" + ROOT + data["course"] + "/" + article_name + \
+    return "[" + link_text + "](" + ROOT + data['course'] + "/" + article_name + \
         ".html)"
 
 
@@ -62,9 +65,27 @@ def articles_urls(articles_metadata):
     articles = []
     for a in articles_metadata.keys():
         meta = articles_metadata[a]
-        url = ROOT + meta["course"] + "/" + a + ".html"
-        articles.append({'title': meta['title'], 'url': url})
+        if meta["type"] == "article":
+            url = ROOT + meta['course'] + '/' + a + ".html"
+            articles.append({'title': meta['title'], 'url': url})
     return articles
+
+
+def courses_urls(articles_metadata):
+
+    """ Returns [{title, url},...], one dictionary for each course,
+        where url is the url of the first chapter.
+        It will only include courses that have a first chapter,
+        so if there's a course that is missing chapter 1 it will be ignored.
+    """
+
+    courses = []
+    for a in articles_metadata:
+        meta = articles_metadata[a]
+        if "chapter" in meta and meta["chapter"] == 1:
+            url = ROOT + meta['course'] + '/' + a + '.html'
+            courses.append({'title': meta['course'], 'url': url})
+    return courses
 
 
 def image_link(article_name):

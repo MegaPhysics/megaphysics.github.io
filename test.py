@@ -3,8 +3,9 @@ from megaphysics.build import run
 from BeautifulSoup import BeautifulSoup
 
 article_text = """title: Test
-course: Articles
 author: Test Author
+type: article
+live: true
 
 Test Article
 ====

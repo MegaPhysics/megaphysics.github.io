@@ -3,6 +3,7 @@
 # -------- Standard Libraries -------- #
 
 import os
+from os.path import isfile, join
 import re
 from functools import partial
 
@@ -23,7 +24,9 @@ def generate_links(articles_metadata):
     valid article name, replaces 'link' with the correct url to the article.
     """
 
-    for filename in os.listdir("temp"):
+    # Exclude directories
+    files = [f for f in os.listdir("temp") if isfile(join("temp", f))]
+    for filename in files:
         text = open("temp/" + filename).read()
 
         image = image_link(filename.replace(".md", ""))

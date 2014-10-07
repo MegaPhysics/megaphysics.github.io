@@ -42,3 +42,8 @@ td {
 th {
     word-wrap: break-word
 }
+.navbar-inverse .navbar-brand:hover,
+.navbar-inverse .navbar-brand:focus,
+.navbar-inverse .active-brand {
+    background-color: #006687;
+}
